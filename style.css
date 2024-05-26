@@ -350,3 +350,32 @@ background-size: 100% 2px, 3px 100%;
   margin-left: 20px;
 }
 
+.output-line {
+  visibility: hidden;
+  white-space: pre; /* Preserves whitespace and formatting */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    visibility: hidden;
+  }
+  to {
+    width: 100%;
+    visibility: visible;
+  }
+}
+
+#title p {
+  font-size: 1.2rem !important;
+  letter-spacing: 0.1rem !important;
+  margin: 0px !important;
+  margin-left: 0px !important;
+  font-family: unset !important;
+  visibility: hidden;
+  font-weight: bold;
+}
+
+#subtitle {
+  margin-left: 0px !important;
+}
