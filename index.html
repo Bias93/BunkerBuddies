@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="crt-colorsep"> <!-- Applica la separazione dei colori a tutto il corpo -->
+  <div id="terminal">
   <img src="bezel.png" alt="Background Image" class="background-image">
   <div class="scanlines crt-flicker"></div> <!-- Applica sia scanlines che flicker -->
   <div id="loginForm">
@@ -32,14 +33,15 @@
                                                                            
   </pre>
   <div id="terminalWrapper">
-    <span id="prompt">></span>
-    <div style="display: flex; align-items: center;">
+    <div id="outputt"></div>
+    <div id="command" style="display: flex; align-items: center;">
+      <span id="prompt">></span>
       <input type="text" id="commandInput" onkeydown="if(event.key === 'Enter') {processCommand();}" autocomplete="off">
       <span id="textWidthCalculator" style="visibility: hidden; position: absolute; white-space: pre;"></span>
       <span id="customCaret">_</span> <!-- Caret personalizzato -->
     </div>
   </div>
-  <pre id="output"></pre>
+  </div>
   </div>
   <script src="js/command.js"></script>
   <script src="js/history.js"></script>

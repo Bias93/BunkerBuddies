@@ -10,13 +10,9 @@ const help = [
 
 function processCommand() {
   const input = document.getElementById('commandInput');
-  const output = document.getElementById('output');
+  const terminal = document.getElementById('outputt');
   const cmd = input.value.toLowerCase();
   input.value = ''; // Clear input after command
-
-    commandInput.value = "";
-    textWidthCalculator.textContent = ""; // Resetta il calcolatore di larghezza
-    customCaret.style.transform = "translateX(0px)"; // Resetta la posizione del caret
 
   // Store command in history
   if (cmd !== '') {
@@ -24,29 +20,73 @@ function processCommand() {
     historyIndex = commandHistory.length;
   }
 
+  let responseLines = []; // This will hold lines of text as array elements.
+
+  // Display the command in the terminal
+  const commandDisplay = document.createElement('p');
+  commandDisplay.textContent = '> ' + cmd;
+  commandDisplay.style.color = 'lime';
+  commandDisplay.style.fontFamily = "'VT323', monospace";
+  commandDisplay.style.fontSize = '1.5rem';
+  commandDisplay.style.textShadow = '0 0 5px rgba(0, 255, 0, 0.5)';
+  commandDisplay.style.margin = '0';
+  commandDisplay.style.lineHeight = '1.3em';
+  terminal.appendChild(commandDisplay);
+
+  // Determine response based on command
   switch (cmd) {
     case 'help':
-      output.innerHTML = help.join('<br>');
+      responseLines = help;
       break;
     case 'whois':
-      output.innerHTML = 'Bunker Buddies è un gioco di ruolo ...';
+      responseLines = ['Bunker Buddies è un gioco di ruolo ...'];
       break;
     case 'shadow_files':
-      output.innerHTML = 'Accesso ai file segreti ...';
+      responseLines = ['Accesso ai file segreti ...'];
       break;
     case 'dossier':
-      output.innerHTML = 'Caricamento dei dossier ...';
+      responseLines = ['Caricamento dei dossier ...'];
       break;
     case 'resources':
-      output.innerHTML = 'Accesso al database delle risorse ...';
+      responseLines = ['Accesso al database delle risorse ...'];
       break;
     case 'missions':
-      output.innerHTML = 'Dettagli sulle missioni correnti ...';
+      responseLines = ['Dettagli sulle missioni correnti ...'];
       break;
     case 'intel':
-      output.innerHTML = 'Informazioni di intelligence ...';
+      responseLines = ['Informazioni di intelligence ...'];
       break;
     default:
-      output.innerHTML = 'Comando non riconosciuto. Prova "help" per una lista di comandi.';
+      responseLines = ['Comando non riconosciuto. Prova "help" per una lista di comandi.'];
   }
+
+  
+  // Create and append a blank <p> element as a spacer before the response
+  const preSpacer = document.createElement('p');
+  preSpacer.style.minHeight = '1.5rem'; // Ensure the spacer has a visible height
+  terminal.appendChild(preSpacer);
+
+  // Append each line as a <p> element directly to the terminal div
+  responseLines.forEach(line => {
+    const p = document.createElement('p');
+    p.textContent = line;
+    p.style.color = 'lime';
+    p.style.fontFamily = "'VT323', monospace";
+    p.style.fontSize = '1.5rem';
+    p.style.textShadow = '0 0 5px rgba(0, 255, 0, 0.5)';
+    p.style.margin = '0';
+    p.style.lineHeight = '1.3em';
+    p.style.marginLeft = '20px';
+    outputt.appendChild(p);
+  });
+
+    // Create and append a blank <p> element as a spacer after the response
+    const postSpacer = document.createElement('p');
+    postSpacer.style.minHeight = '1.5rem'; // Ensure the spacer has a visible height
+    terminal.appendChild(postSpacer);
+
+  // Ensure the input field is always in view after executing command
+  input.scrollIntoView(false);
 }
+
+

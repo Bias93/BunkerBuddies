@@ -15,8 +15,13 @@ body, input, #output {
   text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
 
+#terminal {
+  margin: 5rem 8rem;
+  overflow: hidden;
+  height: 80vh;
+}
+
 #main {
-  padding: 5rem 8rem;
   display: flex;
   flex-direction: column;
 }
@@ -27,12 +32,10 @@ body, input, #output {
 }
 
 #terminalWrapper {
-  display: block;
   width: 100%;
   max-width: 800px;
   display: flex;
-  align-items: center;
-  padding-left: 8px;
+  flex-direction: column;
 }
 
 input {
@@ -46,7 +49,7 @@ input {
   text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-#terminalWrapper > div {
+#terminalWrapper > #command {
   display: flex;
   align-items: center;
   position: relative;
@@ -61,7 +64,7 @@ input {
 #customCaret {
   animation: blink 1s step-end infinite;
   position: absolute;
-  left: 10px;
+  left: 20px;
 }
 
 #passwordCaret {
@@ -221,7 +224,7 @@ background-size: 100% 2px, 3px 100%;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-color: transparent; /* Rimuovi qualsiasi sfondo per integrare con lo stile del terminale */
   z-index: 10;
 }
@@ -319,5 +322,15 @@ background-size: 100% 2px, 3px 100%;
   position: absolute;
   color: lime;
   font-family: 'VT323', monospace; /* Stesso stile del font del terminale */
+}
+
+#terminal p {
+  color: lime;
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  margin: 0;
+  line-height: 1.3em;
+  margin-left: 20px;
 }
 
