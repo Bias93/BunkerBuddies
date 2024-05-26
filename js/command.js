@@ -1,11 +1,11 @@
 // commands.js
 
 const help = [
-  'whois       Cos\'è Bunker Buddies?',
-  'dossier       Profili dettagliati di personaggi e NPC',
+  'whois           Cos\'è Bunker Buddies?',
+  'dossier         Profili dettagliati di personaggi e NPC',
   'resources       Database di risorse disponibili per i personaggi',
-  'missions       Dettagli specifici sulle missioni correnti',
-  'intel       Informazioni di intelligence che i personaggi hanno raccolto'
+  'missions        Dettagli specifici sulle missioni correnti',
+  'intel           Informazioni di intelligence che i personaggi hanno raccolto'
 ];
 
 function processCommand() {
