@@ -5,7 +5,6 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden; /* Nasconde qualsiasi contenuto che superi la dimensione del viewport */
-  height: 100vh; /* Imposta l'altezza del corpo a tutto il viewport */
 }
 
 body, input, #output {
@@ -16,9 +15,19 @@ body, input, #output {
 }
 
 #terminal {
-  margin: 5rem 8rem;
+  margin: 5rem 10rem;
   overflow: hidden;
   height: 80vh;
+  overflow-y: auto;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 #main {
@@ -26,9 +35,16 @@ body, input, #output {
   flex-direction: column;
 }
 
-#main h1 {
-  font-size: 4.2rem;
+#main pre {
+  font-size: 1.2rem;
   letter-spacing: 0.1rem;
+}
+
+@media screen and (max-width: 1250px) {
+  #main pre {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
 }
 
 #terminalWrapper {

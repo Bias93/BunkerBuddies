@@ -13,6 +13,7 @@ function processCommand() {
   const terminal = document.getElementById('outputt');
   const cmd = input.value.toLowerCase();
   input.value = ''; // Clear input after command
+  resetCaret(); // Reset the caret position to the beginning
 
   // Store command in history
   if (cmd !== '') {
@@ -90,3 +91,9 @@ function processCommand() {
 }
 
 
+function resetCaret() {
+  const textWidthCalculator = document.getElementById('textWidthCalculator');
+  const customCaret = document.getElementById('customCaret');
+  textWidthCalculator.textContent = ''; // Clear the text width calculator
+  customCaret.style.transform = 'translateX(0px)'; // Reset caret position
+}
