@@ -1,0 +1,323 @@
+/* style.css */
+body {
+  color: lime; /* Imposta il colore del testo a lime */
+  background-color: #0D260D;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Nasconde qualsiasi contenuto che superi la dimensione del viewport */
+  height: 100vh; /* Imposta l'altezza del corpo a tutto il viewport */
+}
+
+body, input, #output {
+  font-family: 'VT323', monospace; /* Applica il font VT323 a tutto il testo */
+  letter-spacing: 0.05rem; /* Aggiunge spazio tra le lettere */
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+#main {
+  padding: 5rem 8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#main h1 {
+  font-size: 4.2rem;
+  letter-spacing: 0.1rem;
+}
+
+#terminalWrapper {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+input {
+  color: lime;
+  border: none;
+  width: 100%;
+  caret-color: transparent;
+  outline: none;
+  padding: 0.5rem;
+  background-color: transparent;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+#terminalWrapper > div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#inputPanel {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#customCaret {
+  animation: blink 1s step-end infinite;
+  position: absolute;
+  left: 10px;
+}
+
+#passwordCaret {
+  animation: blink 1s step-end infinite;
+  position: absolute;
+  bottom: 6px;
+  left: 10px;
+}
+
+@keyframes blink {
+  from, to { color: transparent }
+  50% { color: lime; }
+}
+
+#output {
+  color: lime;  
+  padding: 0.5rem;
+  overflow-y: auto;
+  max-height: 200px;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+}
+
+/*This adds a "crt scanlines" effect to the screen*/
+.scanlines::before {
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 49%, 
+      rgba(0, 255, 0, 0.1) 49%, /* Cambia il colore a verde per un effetto più visibile */
+      rgba(0, 255, 0, 0.1) 51%,
+      rgba(0, 0, 0, 0) 51%
+    );
+  background-size: 100% 3px; /* Linee più sottili e più frequenti */
+  animation: moveScanlines 2s linear infinite;
+}
+
+/*This adds a "flickering screen" effect*/
+@keyframes flicker {
+  0% {
+  opacity: 0.27861;
+  }
+  5% {
+  opacity: 0.34769;
+  }
+  10% {
+  opacity: 0.23604;
+  }
+  15% {
+  opacity: 0.90626;
+  }
+  20% {
+  opacity: 0.18128;
+  }
+  25% {
+  opacity: 0.83891;
+  }
+  30% {
+  opacity: 0.65583;
+  }
+  35% {
+  opacity: 0.67807;
+  }
+  40% {
+  opacity: 0.26559;
+  }
+  45% {
+  opacity: 0.84693;
+  }
+  50% {
+  opacity: 0.96019;
+  }
+  55% {
+  opacity: 0.08594;
+  }
+  60% {
+  opacity: 0.20313;
+  }
+  65% {
+  opacity: 0.71988;
+  }
+  70% {
+  opacity: 0.53455;
+  }
+  75% {
+  opacity: 0.37288;
+  }
+  80% {
+  opacity: 0.71428;
+  }
+  85% {
+  opacity: 0.70419;
+  }
+  90% {
+  opacity: 0.7003;
+  }
+  95% {
+  opacity: 0.36108;
+  }
+  100% {
+  opacity: 0.24387;
+  }
+}
+
+.crt-flicker::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.15);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+/*This adds a "screen door" effect*/
+
+.crt-flicker::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.1) 50%  /* Riduci l'opacità qui */
+  ),
+  linear-gradient(
+    90deg, 
+    rgba(255, 0, 0, 0.03), /* Riduci anche l'opacità dei colori RGB qui */
+    rgba(0, 255, 0, 0.01), 
+    rgba(0, 0, 255, 0.03)
+  );
+background-size: 100% 2px, 3px 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+#loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent; /* Rimuovi qualsiasi sfondo per integrare con lo stile del terminale */
+  z-index: 10;
+}
+
+#loginPanel {
+  position: relative;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  color: lime;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+#passwordInput {
+  font-family: 'VT323', monospace;
+  background-color: transparent; /* Stesso sfondo del terminale */
+  margin-top: 10px;
+}
+
+#passwordInput:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Stile per il messaggio di errore */
+#errorMessage {
+  position: absolute;
+  bottom: -80px; /* Adegua questa posizione in base alle tue esigenze */
+  left: 0;
+  width: 100%;
+  color: #ff6347; /* Utilizza un rosso "tomato" per maggiore visibilità */
+  text-shadow: 0 0 10px #ff6347; /* Aumenta il glow per un effetto più marcato */
+  display: none;
+  animation: flickerError 3s infinite;
+}
+
+@keyframes flickerError {
+  0%, 100% { opacity: 0.2; }
+  10%, 30%, 50%, 70%, 90% { opacity: 1; }
+  20%, 40%, 60%, 80% { opacity: 0; }
+}
+
+/* Aggiunta di un leggero effetto distorsione durante il flicker */
+#errorMessage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+  background: inherit;
+  filter: blur(1px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+#commandInput {
+  color: lime;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  caret-color: transparent; /* Colore del cursore */
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+  padding: 0.5rem;
+  outline: none;
+}
+
+#commandInput:focus {
+  outline: none; /* Rimuove qualsiasi bordo di focus predefinito */
+}
+
+/* Stili per mantenere il prompt e l'input in linea */
+#prompt {
+  display: inline;
+}
+
+#commandInput, #passwordInput {
+  display: inline-block; /* Permette al cursore di seguire il testo */
+  width: calc(100% - 2rem); /* Ajust the width as necessary */
+}
+
+#textWidthCalculator {
+  visibility: hidden;
+  position: absolute;
+  white-space: pre; // Mantiene gli spazi e ritorni a capo simili all'input
+  font-family: 'VT323', monospace; // Assicurati che corrisponda allo stile di input
+  font-size: 1.5rem; // Assicurati che corrisponda allo stile di input
+}
+
+#passwordCaret {
+  animation: blink 1s step-end infinite;
+  position: absolute;
+  color: lime;
+  font-family: 'VT323', monospace; /* Stesso stile del font del terminale */
+}
+
